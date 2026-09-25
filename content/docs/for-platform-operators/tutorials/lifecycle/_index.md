@@ -78,7 +78,7 @@ It's recommended to check the [lifecycle releases][releases] page to download bi
 In order to execute the various `lifecycle phases` correctly, you first need to set the values of few important environment variables by running the following commands in the terminal:
 
 ```command
-export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
+export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.15
 export CNB_SAMPLES_PATH="/<your-path>/samples"
 export CNB_LIFECYCLE_PATH="/<your-path/lifecycle/out/<your-os-arch>/lifecycle"
 ```
@@ -86,7 +86,7 @@ export CNB_LIFECYCLE_PATH="/<your-path/lifecycle/out/<your-os-arch>/lifecycle"
 Where
 
 * `CNB_USER_ID` and `CNB_GROUP_ID` are arbitrary values that need to be consistent. This example re-uses our user id and group id for the `CNB` user.  In a production system, these are commonly set to `1000`.
-* `CNB_PLATFORM_API` or the `Platform API` version, varies depending on the use case. This tutorial uses `v0.14`, which is the latest [Platform API][Platform API] version.
+* `CNB_PLATFORM_API` or the `Platform API` version, varies depending on the use case. This tutorial uses `v0.15`, which is the latest [Platform API][Platform API] version.
 * `CNB_SAMPLES_PATH` represents the path of our local copy of the `samples` directory.
 * `CNB_LIFECYCLE_PATH` represents the path of our local compiled `lifecycle` directory.
 
@@ -139,15 +139,15 @@ cp -r "/tmp/tutorial/samples/apps/bash-script" ./apps/
 Now, you can invoke the `analyzer` for `AMD64` architecture
 
 ```text
-${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-image cnbs/sample-stack-run:noble apps/bash-script
+${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-image cnbs/sample-stack-run:resolute apps/bash-script
 ```
 
 <!-- test:exec -->
 <!--
 ```command
-export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
+export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.15
 export CNB_LIFECYCLE_PATH=/tmp/tutorial/lifecycle/out/linux-amd64/lifecycle
-${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-image cnbs/sample-stack-run:noble apps/bash-script
+${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-image cnbs/sample-stack-run:resolute apps/bash-script
 ```
 -->
 
@@ -182,10 +182,10 @@ Ensuring privileges...
 Executing command...
 ...
 Image with name "apps/bash-script" not found
-Image with name "cnbs/sample-stack-run:noble" not found
+Image with name "cnbs/sample-stack-run:resolute" not found
 ...
 Run image info in analyzed metadata is: 
-{"Reference":"","Image":"cnbs/sample-stack-run:noble","Extend":false,"target":{"os":"linux","arch":"amd64"}}
+{"Reference":"","Image":"cnbs/sample-stack-run:resolute","Extend":false,"target":{"os":"linux","arch":"amd64"}}
 ```
 
 Now if you `cat ./layers/analyzed.toml`, you should see a few null entries, a `run-image` section that records the provided name provided, and the found `os/arch`.
@@ -195,7 +195,7 @@ Now if you `cat ./layers/analyzed.toml`, you should see a few null entries, a `r
 In this phase, the `detector` looks for an ordered group of buildpacks that will be used during the `build` phase. The `detector` requires an `order.toml` file to be provided. We can derive an order from `builder.toml` in the `samples` directory while removing the deprecated `stack` section as follows:
 
 ```text
-cat "${CNB_SAMPLES_PATH}/builders/noble/builder.toml" | grep -v -i "stack" | sed 's/\.\.\/\.\./\./' > order.toml
+cat "${CNB_SAMPLES_PATH}/builders/resolute/builder.toml" | grep -v -i "stack" | sed 's/\.\.\/\.\./\./' > order.toml
 
 ```
 
@@ -297,7 +297,7 @@ Ensuring privileges...
 Executing command...
 No run metadata found at path "/cnb/run.toml"
 Run image info in analyzed metadata is: 
-{"Reference":"","Image":"cnbs/sample-stack-run:noble","Extend":false,"target":{"os":"linux","arch":"amd64"}}
+{"Reference":"","Image":"cnbs/sample-stack-run:resolute","Extend":false,"target":{"os":"linux","arch":"amd64"}}
 Timer: Restorer started at 2024-10-01T07:03:47Z
 Restoring Layer Metadata
 Reading buildpack directory: /tmp/example/layers/samples_hello-world

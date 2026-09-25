@@ -38,7 +38,7 @@ export FOO=BAR
 pack build sample-app \
     --env "HELLO=WORLD" \
     --env "FOO" \
-    --builder cnbs/sample-builder:noble \
+    --builder cnbs/sample-builder:resolute \
     --buildpack  samples/buildpacks/hello-world/ \
     --buildpack samples/apps/bash-script/bash-script-buildpack/ \
     --path  samples/apps/bash-script/
@@ -84,7 +84,7 @@ echo -en "HELLO=WORLD\nFOO" > ./envfile
 ```
 pack build sample-app \
     --env-file ./envfile \
-    --builder cnbs/sample-builder:noble \
+    --builder cnbs/sample-builder:resolute \
     --buildpack  samples/buildpacks/hello-world/ \
     --buildpack samples/apps/bash-script/bash-script-buildpack/ \
     --path  samples/apps/bash-script/
@@ -108,10 +108,10 @@ The following environment variables were set and available to buildpacks at buil
 
 > **NOTE:** Variables defined using `--env` take precedence over variables defined in `--env-file`.
 
-### Using Project Descriptor
+### Using project descriptor
 The `--descriptor` parameter must be a path to a file which follows the project.toml [schema][descriptor-schema].
-Without the `--descriptor` flag, `pack build` will use the `project.toml` file in the application directory if it exists.
-You can define environment variables in an `env` table in the file, and pass those into the application.
+Without the `--descriptor` flag, `pack build` will use the `project.toml` file in the app directory if it exists.
+You can define environment variables in an `env` table in the file, and pass those into the app.
 
 ##### Example:
 
@@ -130,7 +130,7 @@ EOL
 2. Build the app
 ```
 pack build sample-app \
-    --builder cnbs/sample-builder:noble \
+    --builder cnbs/sample-builder:resolute \
     --buildpack  samples/buildpacks/hello-world/ \
     --buildpack samples/apps/bash-script/bash-script-buildpack/ \
     --path  samples/apps/bash-script/

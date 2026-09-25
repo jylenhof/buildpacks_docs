@@ -1,6 +1,6 @@
 
 +++
-title="Build your very first application with buildpacks"
+title="Build your very first app with buildpacks"
 aliases=[
   "/docs/app-developer-guide/build-an-app",
   "/docs/using-pack/building-app/",
@@ -25,7 +25,7 @@ pack builder suggest
 ```
 <!--+- "{{execute}}"+-->
 
-For this guide we're actually going to use a sample builder, `cnbs/sample-builder:noble`, which is not listed
+For this guide we're actually going to use a sample builder, `cnbs/sample-builder:resolute`, which is not listed
 as a suggested builder for good reason. It's a sample.
 
 ### 2. Build your app
@@ -41,12 +41,12 @@ ls samples || git clone https://github.com/buildpacks/samples
 
 2. Build the app
 ```
-pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:noble
+pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:resolute
 ```
 <!--+- "{{execute}}"+-->
 
 > **TIP:** If you don't want to keep specifying a builder every time you build, you can set it as your default
-> builder by running `pack config default-builder <BUILDER>` for example `pack config default-builder cnbs/sample-builder:noble`
+> builder by running `pack config default-builder <BUILDER>` for example `pack config default-builder cnbs/sample-builder:resolute`
 <!--+- "{{execute}}"+-->
 
 ### 3. Run it
@@ -56,7 +56,7 @@ docker run --rm -p 8080:8080 sample-app
 ```
 <!--+- "{{execute}}"+-->
 
-**Congratulations!**
+**Congratulations.**
 
 <!--+- if false+-->
 The app should now be running and accessible via [localhost:8080](http://localhost:8080).
@@ -64,7 +64,7 @@ The app should now be running and accessible via [localhost:8080](http://localho
 
 ## What about ARM apps?
 
-Linux ARM image builds are now supported!
+Linux ARM image builds are now supported.
 
 <!--+- if false+-->
 <a href="/docs/for-app-developers/how-to/special-cases/build-for-arm" class="button bg-blue">Linux ARM build guide</a>
@@ -75,7 +75,7 @@ Check out the [Linux ARM build guide](https://buildpacks.io//docs/for-app-develo
 ` +-->
 ## What about Windows apps?
 
-Windows image builds are now supported!
+Windows image builds are now supported.
 
 <!--+- if false+-->
 <a href="/docs/for-app-developers/how-to/special-cases/build-for-windows" class="button bg-blue">Windows build guide</a>
